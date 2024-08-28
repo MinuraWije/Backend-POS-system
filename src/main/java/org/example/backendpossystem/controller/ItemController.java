@@ -64,12 +64,12 @@ public class ItemController extends HttpServlet {
             String qur = req.getParameter("query").toLowerCase();
 
             try(var writer = resp.getWriter()){
-                List<ItemDto> itemList = itemDataProcess.searchItem(qur,connection);
+                List<Item> itemList = itemDataProcess.searchItem(qur,connection);
                 JsonArrayBuilder jb = Json.createArrayBuilder();
                 Jsonb jsonb = JsonbBuilder.create();
 
 
-                for (ItemDto itemDto : itemList){
+                for (Item itemDto : itemList){
                     var jObject = Json.createReader(new StringReader(jsonb.toJson(itemDto))).readObject();
                     jb.add(jObject);
                 }
@@ -105,7 +105,7 @@ public class ItemController extends HttpServlet {
         }
         try(var writer = resp.getWriter()){
             Jsonb jsonb = JsonbBuilder.create();
-            ItemDto itemDto = jsonb.fromJson(req.getReader(), ItemDto.class);
+            Item itemDto = jsonb.fromJson(req.getReader(), Item.class);
             ItemDataProcess itemDataProcess = new ItemDataProcess();
             itemDto.setItemCode(UtilProcess.generateId());
             writer.write(itemDataProcess.saveItem(itemDto,connection));
@@ -124,7 +124,7 @@ public class ItemController extends HttpServlet {
         try(var writer = resp.getWriter()){
             String itemCode = req.getParameter("itemCode");
             Jsonb jsonb = JsonbBuilder.create();
-            var updatedItem = jsonb.fromJson(req.getReader(), ItemDto.class);
+            var updatedItem = jsonb.fromJson(req.getReader(), Item.class);
             boolean b = itemDataProcess.updateItem(itemCode, updatedItem, connection);
             if (b) {
                 writer.write("Item ID "+ itemCode+ " Updated");
