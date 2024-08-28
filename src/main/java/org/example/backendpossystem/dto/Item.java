@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Item {
     String itemCode;
     String itemName;
-    String itemQuantity;
-    String itemPrice;
+    int itemQuantity;
+    int itemPrice;
 }
