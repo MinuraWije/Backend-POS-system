@@ -21,5 +21,5 @@ public interface ItemData {
 
     List<String> getNameSuggestions(String query, Connection connection) throws SQLException;
 
-    /*boolean updateItemQty(Connection connection, OrderDetail orderDetailDto);*/
+    boolean updateItemQty(Connection connection, OrderDetail orderDetailDto);
 }
