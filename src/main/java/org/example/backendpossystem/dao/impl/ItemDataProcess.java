@@ -153,7 +153,7 @@ public class ItemDataProcess implements ItemData {
         return suggestions;
     }
 
-    /*@Override
+    @Override
     public boolean updateItemQty(Connection connection, OrderDetail orderDetailDto) {
         try(var pstm = connection.prepareStatement(CHANGE_ITEM_QTY)){
             pstm.setInt(1,orderDetailDto.getQty());
@@ -162,5 +162,5 @@ public class ItemDataProcess implements ItemData {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }
